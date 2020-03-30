@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>COVID-19 Map</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/global.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+	</head>
+	<body>
+        <section>
+            <h1>Coronavirus/COVID-19 cases in the <b id="state">US</b></h1>
+            <form method="POST">
+                <input name="text">
+                <input type="submit">
+            </form>
+        </section>
+        <br>
+        <div>
+            The <b>COVID-19 virus</b>, or commonly called the <b>Coronavirus</b>, ...
+        </div>
+        <img src="{{ url_for('static',filename='plots/plot.png') }}">
+        <footer>
+            CodeLongAndProsper & Supercolbat &bull;
+            2020
+        </footer>
+	</body>
+</html>

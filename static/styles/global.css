@@ -1,0 +1,19 @@
+body {
+    font-family: Arial;
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    background-image: linear-gradient(to bottom right, #AB05F2,#5A13F2);
+    color: #FFFFFF;
+    padding: 5%;
+    margin: 0;
+}
+
+footer {
+    background-image: linear-gradient(to bottom right, #AB05F2,#5A13F2);
+    color: #FFFFFF;
+    padding: 1%;
+    margin: 0;
+}
