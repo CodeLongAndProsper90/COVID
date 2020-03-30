@@ -1,9 +1,14 @@
+################################################
+# backend.py is part of COVID.codelongandpros.repl.co
+# You should have recieved a copy of the three-clause BSD license. 
+# If you did not, it is located at: 
+# https://opensource.org/licenses/BSD-3-Clause
+# Made by Scott Little, with help from StackOverflow
+################################################
 import csv
-import time
-import os
 import matplotlib.pyplot as plt
-import cv2
 from imageio import imwrite
+
 
 def get_file():
   url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv'
@@ -21,29 +26,37 @@ def get_file():
 def get_cases(stat):
   x = []
   y = []
+  d = [0]
+  dx = [0]
+  if len(stat) == 0:
+    return 1
+
   dat = 0
-  temp = [ c for c in stat]
-  temp[0] = temp[0].upper()
-  state = ""
-  for item in temp:
-    state+=item
-  print(state)
+
+  state = stat
   reader = csv.DictReader(open("cases.csv"))
   for raw in reader:
 
     if raw['state'] == state:
       dat+=1
       x.append(dat)
+      dx.append(dat)
       y.append(raw['cases'])
+      d.append(raw['deaths'])
     else:
       continue
-  fig = plt.figure(figsize=(16,12))
-  fig.suptitle("COVID-19 cases in "+ stat)
-  axes= fig.add_axes([0.1,0.1,0.8,0.8])
-  axes.plot(x, y)
-  plt.ylabel('Cases')
-  plt.xlabel("Days since 2020-01-21")
-  fig.savefig('static/plots/plot.png', bbox_inches='tight')
+  fig, axs = plt.subplots(2,figsize=(12,10))
+  fig.suptitle(f"COVID-19 Cases/Deaths in {stat}")
+  axs[0].plot(x, y)
+  axs[1].plot(dx, d)
+  axs[0].set_ylabel('Cases')
+  axs[1].set_ylabel("Deaths")
+  for axe in axs:
+
+    axe.set_xlabel("Days since 2020-01-21")
+  plt.savefig('static/plots/plot.png', bbox_inches='tight', dpi=400)
+  return 0
+
 def overwrite():
   import numpy as np
   img = np.zeros([100,100,3],dtype=np.uint8)

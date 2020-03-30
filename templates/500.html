@@ -3,17 +3,20 @@
 	<head>
 		<title>500: Internal Error</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/global.css') }}">
-
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/500.css') }}">
 	</head>
 	<body>
         <section>
-            <h1><b>500</b> That's an error!</h1>
+            <h1>Great. We broke it.</h1>
             <p>
-            We're sorry, but the server threw an excption. We can't tell you more, but this will be resolved as soon as is possible. 
-            If this persists more than 600 seconds(10 minutes), please open an issue here: . 
-            <a href="https://github.com/CodeLongAndProsper90">@CodeLongAndProsper90</a> or <a href="github.com/Supercolbat">@Supercolbat</a>
+              We're sorry, but one of three things has happened:
+              <ul>
+                <li>We are working on a new feature, and have messed something up.</li>
+                <li>There are too many visitors</li>
+                <li>The amazingness of this cat broke the website.</li>
+              </ul>
             </p>
-            <img src='https://http.cat/500'>
         </section>
+        <img src='https://http.cat/500'>
 	</body>
 </html>

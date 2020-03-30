@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>About</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/global.css') }}">
+
+
+	</head>
+	<body>
+
+        <nav>
+            <a class="active" href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+        </nav>
+        <section>
+          <h1>About</h1>
+          <hr>
+          <p> 
+            This website generates a graph of a state's (United States) COVID-19 cases and deaths.<br><br>
+          </p>
+        <h2> 
+          Made by <u>Scott Little</u> and <u>Joey Lent</u> in 3 days.
+        </h2>
+
+        <b> This project uses:</b>
+          <ul>
+            <li> MatPlotLib </li>
+            <li> Flask </li>
+            <li> ImageIO </li>
+            <li> HTML5 </li>
+            <li> CSS 3 </li>
+            <li> Python 3</li>
+            <li> Repl.it </li>
+            <li> <a href="https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv">Data</a> from the NY times </li>
+          </ul>
+          <p>
+            <i><b>Credit to <a href="https://http.cat">http.cat</a> for the great 404, 418, and 500 photos.</b></i>
+          </p>
+
+
+        </section>
+
+        <article>
+            <!-- HTML5 tags ;) -->
+
+        </article>
+	</body>
+</html>

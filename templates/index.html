@@ -4,23 +4,61 @@
 		<title>COVID-19 Map</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/global.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+
 	</head>
-	<body>
+	<body onLoad="load();">
+        <nav>
+            <a class="active" href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+        </nav>
+        <script>
+            function load() {
+                if (document.cookie.length > 6) { 
+                    document.getElementById("state").innerHTML = document.cookie.split('=')[1];
+                }
+            }
+        </script>
+
         <section>
-            <h1>Coronavirus/COVID-19 cases in the <b id="state">US</b></h1>
+            <h1>Coronavirus/COVID-19 cases in <b id="state">the US</b></h1> <!--id: state will change based on what state was chosen -->
             <form method="POST">
-                <input name="text">
-                <input type="submit">
+                <a href="#" id=test><button class='btn btn-default'>Refresh</button></a>
+                <input name="text" pattern="/^Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming$/"
+autocomplete="off" id="selection" oninvalid="this.setCustomValidity('Please enter the name of a state, with correct captlization')"
+       onvalid="this.setCustomValidity('')" autocomplete="off">
+               <input type="submit" value="Generate graph">
             </form>
+            <script>
+                const states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];document.getElementsByName("text")[0].placeholder = states[Math.floor(Math.random() * states.length)]+"...";
+            </script>
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                $(function() {
+                    $('a#test').bind('click', function() {
+                        $.getJSON('/background_process_test',
+                        function(data) {
+                            //do nothing
+                        });
+                        return false;
+                    });
+                });
+            </script>
         </section>
         <br>
         <div>
-            The <b>COVID-19 virus</b>, or commonly called the <b>Coronavirus</b>, ...
+            The <b>SARS-CoV-2 virus</b>, commonly called the <b>Coronavirus</b>, is a rapidly spreading virus. 
+            It ...
         </div>
-        <img src="{{ url_for('static',filename='plots/plot.png') }}">
+        <img id="plot" src="{{ url_for('static',filename='plots/plot.png') }}">
+        <p> Made using <b>Matplotlib</b></p> <br>
         <footer>
-            CodeLongAndProsper & Supercolbat &bull;
-            2020
+            <marquee>
+                Backend and Error pages: CodeLongAndPros &bull;
+                Page designer and CSS wizard: Supercolbat &bull;
+                2020
+            </marquee>
         </footer>
+
 	</body>
 </html>
